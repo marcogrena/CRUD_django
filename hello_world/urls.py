@@ -25,6 +25,8 @@ from hello_world.core import views as core_views
 urlpatterns = [
     path("", core_views.index),
     path("admin/", admin.site.urls),
+    # Tutte le rotte /prodotti/... sono definite in hello_world/prodotti/urls.py
+    path("prodotti/", include("hello_world.prodotti.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
 ]
 if settings.DEBUG:

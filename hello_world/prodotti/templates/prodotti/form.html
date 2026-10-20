@@ -1,0 +1,14 @@
+{% extends "prodotti/base.html" %}
+
+{% block heading %}{{ titolo }}{% endblock %}
+
+{% block content %}
+{# Stesso template per creazione e modifica; action vuoto = invia alla stessa URL #}
+<form method="post">
+    {# Token anti-CSRF obbligatorio nei form POST (protegge da richieste falsificate) #}
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salva</button>
+    <a href="{% url 'prodotti:lista' %}">Annulla</a>
+</form>
+{% endblock %}

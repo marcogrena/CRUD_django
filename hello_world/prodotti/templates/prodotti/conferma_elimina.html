@@ -1,0 +1,13 @@
+{% extends "prodotti/base.html" %}
+
+{% block heading %}Elimina prodotto{% endblock %}
+
+{% block content %}
+<p>Vuoi eliminare "{{ prodotto.nome }}"?</p>
+{# L'eliminazione avviene solo via POST, mai con un semplice link GET #}
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Conferma</button>
+    <a href="{% url 'prodotti:lista' %}">Annulla</a>
+</form>
+{% endblock %}

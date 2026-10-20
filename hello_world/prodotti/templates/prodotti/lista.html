@@ -1,0 +1,26 @@
+{% extends "prodotti/base.html" %}
+
+{% block content %}
+{# {% url 'nome' %} costruisce l'URL dalla rotta definita in urls.py #}
+<p><a href="{% url 'prodotti:crea' %}">+ Nuovo prodotto</a></p>
+
+<table>
+    <tr><th>ID</th><th>Nome</th><th>Prezzo</th><th>Colore</th><th>Capacità</th><th>Azioni</th></tr>
+    {# "prodotti" è la variabile passata dalla vista lista() #}
+    {% for p in prodotti %}
+    <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.nome }}</td>
+        <td>{{ p.prezzo }} €</td>
+        <td>{{ p.colore }}</td>
+        <td>{{ p.capacita }}</td>
+        <td>
+            <a href="{% url 'prodotti:modifica' p.id %}">Modifica</a> |
+            <a href="{% url 'prodotti:elimina' p.id %}">Elimina</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6">Nessun prodotto.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
